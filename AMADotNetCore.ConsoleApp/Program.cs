@@ -3,6 +3,7 @@
 
 
 using AMADotNetCore.ConsoleApp.AdoDotNetExamples;
+using AMADotNetCore.ConsoleApp.DapperExamples;
 
 Console.WriteLine("Hello, World!");
 
@@ -55,6 +56,10 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 //    Console.WriteLine("Content => " + dr["Blog_Content"]);
 //}
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-adoDotNetExample.Run();
-Console.ReadKey();
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+//adoDotNetExample.Run();
+//Console.ReadKey();
+
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Run();

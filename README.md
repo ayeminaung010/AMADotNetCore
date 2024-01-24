@@ -1,1 +1,3 @@
 # AMADotNetCore
+
+Nuget Package = npm

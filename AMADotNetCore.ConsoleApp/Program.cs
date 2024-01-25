@@ -4,6 +4,7 @@
 
 using AMADotNetCore.ConsoleApp.AdoDotNetExamples;
 using AMADotNetCore.ConsoleApp.DapperExamples;
+using AMADotNetCore.ConsoleApp.EFCoreExamples;
 
 Console.WriteLine("Hello, World!");
 
@@ -61,5 +62,8 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 //Console.ReadKey();
 
 
-DapperExample dapperExample = new DapperExample();
-dapperExample.Run();
+//DapperExample dapperExample = new DapperExample();
+//dapperExample.Run();
+
+EFCoreExample efcoreExample = new EFCoreExample();
+efcoreExample.Run();

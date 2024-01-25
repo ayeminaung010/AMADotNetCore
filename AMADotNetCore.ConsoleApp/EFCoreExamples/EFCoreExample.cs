@@ -18,8 +18,8 @@ namespace AMADotNetCore.ConsoleApp.EFCoreExamples
             //Edit(1);
             //Edit(199);
             //Create("testing title", "testing author", "testing content");
-            //Update(10, "testing title", "testing author", "testing content");
-            Delete(15);
+            Update(28, "hello title 11", "testing author 2", "testing content");
+            //Delete(15);
         }
 
         public void Read()
@@ -82,6 +82,7 @@ namespace AMADotNetCore.ConsoleApp.EFCoreExamples
             item.Blog_Author = author;
             item.Blog_Content = content;
 
+            //_dbContext.Update(item);
             int result = _dbContext.SaveChanges();
 
             string message = result > 0 ? "Updating successfull." : "Updating Failed.";

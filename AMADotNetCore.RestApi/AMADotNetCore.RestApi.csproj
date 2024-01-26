@@ -16,6 +16,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+	  <PackageReference Include="Dapper" Version="2.1.28" />
   </ItemGroup>
 
 </Project>

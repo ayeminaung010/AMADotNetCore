@@ -49,7 +49,7 @@ namespace AMADotNetCore.RestApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBlogs(BlogDataModel blog)
+        public IActionResult CreateBlog(BlogDataModel blog)
         {
             db.Blogs.Add(blog);
             var result = db.SaveChanges();
@@ -78,6 +78,7 @@ namespace AMADotNetCore.RestApi.Controllers
             {
                 return BadRequest("Blog Content is required.");
             }
+
             item.Blog_Title = blog.Blog_Title;
             item.Blog_Author = blog.Blog_Author;
             item.Blog_Content = blog.Blog_Content;
@@ -88,7 +89,7 @@ namespace AMADotNetCore.RestApi.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult PatchBlogs(int id, BlogDataModel blog)
+        public IActionResult PatchBlog(int id, BlogDataModel blog)
         {
             var item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
             if (item is null)

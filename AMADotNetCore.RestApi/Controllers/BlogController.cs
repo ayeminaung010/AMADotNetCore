@@ -57,22 +57,73 @@ namespace AMADotNetCore.RestApi.Controllers
             return Ok(message);
         }
 
-        [HttpPut]
-        public IActionResult updateBlog()
+        [HttpPut("{id}")]
+        public IActionResult updateBlog(int id, BlogDataModel blog)
         {
-            return Ok("put");
+            var item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
+            if (item is null)
+            {
+                return NotFound("data not found .");
+            }
+
+            if (string.IsNullOrEmpty(blog.Blog_Title))
+            {
+                return BadRequest("Blog Title is required.");
+            }
+            if (string.IsNullOrEmpty(blog.Blog_Author))
+            {
+                return BadRequest("Blog Author is required.");
+            }
+            if (string.IsNullOrEmpty(blog.Blog_Content))
+            {
+                return BadRequest("Blog Content is required.");
+            }
+            item.Blog_Title = blog.Blog_Title;
+            item.Blog_Author = blog.Blog_Author;
+            item.Blog_Content = blog.Blog_Content;
+
+            var result = db.SaveChanges();
+            var message = result > 0 ? "Updating Success." : "Updating Failed.";
+            return Ok(message);
         }
 
-        [HttpPatch]
-        public IActionResult PatchBlogs()
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlogs(int id, BlogDataModel blog)
         {
-            return Ok("patch");
+            var item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
+            if (item is null)
+            {
+                return NotFound("data not found .");
+            }
+            if (!string.IsNullOrEmpty(blog.Blog_Title))
+            {
+                item.Blog_Title = blog.Blog_Title;
+            }
+            if (!string.IsNullOrEmpty(blog.Blog_Author))
+            {
+                item.Blog_Author = blog.Blog_Author;
+            }
+            if(!string.IsNullOrEmpty(blog.Blog_Content))
+            {
+                item.Blog_Content = blog.Blog_Content;
+            }
+            var result = db.SaveChanges();
+            var message = result > 0 ? "Updating Success." : "Updating Failed.";
+            return Ok(message);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteBlogs()
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlogs(int id)
         {
-            return Ok("delete");
+            var item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
+            if (item is null)
+            {
+                return NotFound("data not found .");
+            }
+            db.Blogs.Remove(item);
+            int result = db.SaveChanges();
+            string message = result > 0 ? "Delete success" : "Delete failed";
+            return Ok(message);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AMADotNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DapperBlogController : ControllerBase
+    public class BlogDapperController : ControllerBase
     {
 
         private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()

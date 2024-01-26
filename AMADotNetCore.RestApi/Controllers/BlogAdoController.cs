@@ -10,7 +10,7 @@ namespace AMADotNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdoBlogController : ControllerBase
+    public class BlogAdoController : ControllerBase
     {
 
         [HttpGet]

@@ -88,7 +88,7 @@ namespace AMADotNetCore.ConsoleApp.AdoDotNetExamples
             connection.Close();
             Console.WriteLine("Connection Closed..");
 
-            if(dt.Rows.Count > 0)
+            if(dt.Rows.Count == 0)
             {
                 Console.WriteLine("No Data Found.");
             }

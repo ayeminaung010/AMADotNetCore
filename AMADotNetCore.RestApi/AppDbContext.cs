@@ -11,6 +11,10 @@ namespace AMADotNetCore.RestApi
 {
     public class AppDbContext : DbContext
     {
+        //public AppDbContext(DbContextOptions options) : base(options)
+        //{
+        //}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
@@ -19,7 +23,7 @@ namespace AMADotNetCore.RestApi
                 InitialCatalog = "AMADotNetCore",
                 UserID = "sa",
                 Password = "sa@123",
-                TrustServerCertificate= true
+                TrustServerCertificate = true
             };
             optionsBuilder.UseSqlServer(_sqlConnectionStringBuilder.ConnectionString);
         }

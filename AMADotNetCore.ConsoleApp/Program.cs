@@ -6,9 +6,9 @@ using AMADotNetCore.ConsoleApp.AdoDotNetExamples;
 using AMADotNetCore.ConsoleApp.DapperExamples;
 using AMADotNetCore.ConsoleApp.EFCoreExamples;
 using AMADotNetCore.ConsoleApp.HttpClientExamples;
+using AMADotNetCore.ConsoleApp.RefitExamples;
 using AMADotNetCore.ConsoleApp.RestClientExamples;
 
-Console.WriteLine("Hello, World!");
 
 //Ctrl + .
 //Ctrl + D
@@ -70,8 +70,15 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 //EFCoreExample efcoreExample = new EFCoreExample();
 //efcoreExample.Run();
 
-HttpClientExample httpExample = new HttpClientExample();
-await httpExample.Run();
+//HttpClientExample httpExample = new HttpClientExample();
+//await httpExample.Run();
 
 //RestClientExample restClientExample = new RestClientExample();
 //await restClientExample.Run();
+Console.WriteLine("Please wait for api...");
+Console.ReadKey();
+
+RefitExample refitExample = new RefitExample();
+await refitExample.Run();
+
+Console.ReadKey();

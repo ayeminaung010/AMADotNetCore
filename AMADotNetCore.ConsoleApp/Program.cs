@@ -70,8 +70,8 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 //EFCoreExample efcoreExample = new EFCoreExample();
 //efcoreExample.Run();
 
-//HttpClientExample httpExample = new HttpClientExample();
-//await httpExample.Run();
+HttpClientExample httpExample = new HttpClientExample();
+await httpExample.Run();
 
-RestClientExample restClientExample = new RestClientExample();
-await restClientExample.Run();
+//RestClientExample restClientExample = new RestClientExample();
+//await restClientExample.Run();

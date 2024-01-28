@@ -4,6 +4,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -13,17 +14,19 @@ namespace AMADotNetCore.ConsoleApp.RestClientExamples
     public class RestClientExample
     {
         private string _blogEndpoint = "https://localhost:7163/api/blog";
+        private readonly RestClient client = new RestClient();
         public async Task Run()
         {
-            await Read();
-            await Edit(1);
-            await Edit(101);
+            //await Read();
+            //await Edit(1);
+            //await Edit(101);
             await Create("created title", "created Author", "Created Content");
+            //await Update(37, "updated title new", "updated Author new", "Updated Content");
+            //await Delete(300);
         }
 
         public async Task Read()
         {
-            RestClient client = new RestClient();
             RestRequest request = new RestRequest(_blogEndpoint,Method.Get);
             //await client.GetAsync(request);
             var response = await client.ExecuteAsync(request);
@@ -43,7 +46,6 @@ namespace AMADotNetCore.ConsoleApp.RestClientExamples
 
         public async Task Edit(int id)
         {
-            RestClient client = new RestClient();
             RestRequest request = new RestRequest($"{_blogEndpoint}/{id}", Method.Get);
             var response = await client.ExecuteAsync(request);
             if (response.IsSuccessStatusCode)
@@ -68,21 +70,33 @@ namespace AMADotNetCore.ConsoleApp.RestClientExamples
                 Blog_Author = author,
                 Blog_Content = content
             };
-            RestClient client = new RestClient();
             RestRequest request = new RestRequest(_blogEndpoint, Method.Post);
             request.AddJsonBody(blog);
             var response = await client.ExecuteAsync(request);
-            string jsonString = response.Content!;
+            Console.WriteLine(response.Content!);
         }
 
-        public void Update()
+        public async Task Update(int id, string title, string author, string content)
         {
-
+            RestRequest request = new RestRequest($"{_blogEndpoint}/{id}", Method.Put);
+            BlogDataModel blog = new BlogDataModel
+            {
+                Blog_Id = id,
+                Blog_Title = title,
+                Blog_Author = author,
+                Blog_Content = content
+            };
+            request.AddJsonBody(blog);
+            var response = await client.ExecuteAsync(request);
+            Console.WriteLine(response.Content!);
         }
 
-        public void Delete()
+        public async Task Delete(int id)
         {
-
+            RestRequest request = new RestRequest($"{_blogEndpoint}/{id}", Method.Delete);
+            var response = await client.ExecuteAsync(request);
+            Console.WriteLine(response.Content!);
         }
+
     }
 }

@@ -17,7 +17,9 @@ namespace AMADotNetCore.ConsoleApp.HttpClientExamples
             //await Read();
             //await Edit(1);
             //await Edit(101);
-            await Create("created title", "created Author", "Created Content");
+            //await Create("created title", "created Author", "Created Content");
+             //await Update(37, "hello title 11", "testing author 2", "testing content");
+            await Delete(34);
         }
 
         public async Task Read()
@@ -68,17 +70,33 @@ namespace AMADotNetCore.ConsoleApp.HttpClientExamples
             HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.PostAsync(_blogEndpoint, httpContent);
-            string jsonString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
 
-        public void Update()
+        public async Task Update(int id,string title, string author,string content)
         {
+            HttpClient client = new HttpClient();
 
+            BlogDataModel blog = new BlogDataModel
+            {
+                Blog_Id = id,
+                Blog_Title = title,
+                Blog_Author = author,
+                Blog_Content = content
+            };
+            string jsonBlog = JsonConvert.SerializeObject(blog);
+            HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
+            
+            HttpResponseMessage response = await client.PutAsync($"{_blogEndpoint}/{id}", httpContent);
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
 
-        public void Delete()
+        public async Task Delete(int id)
         {
+            HttpClient client = new HttpClient();
 
+            HttpResponseMessage response =  await client.DeleteAsync($"{_blogEndpoint}/{id}");
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
     }
 }

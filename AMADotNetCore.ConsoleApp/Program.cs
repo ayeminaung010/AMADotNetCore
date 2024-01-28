@@ -5,6 +5,8 @@
 using AMADotNetCore.ConsoleApp.AdoDotNetExamples;
 using AMADotNetCore.ConsoleApp.DapperExamples;
 using AMADotNetCore.ConsoleApp.EFCoreExamples;
+using AMADotNetCore.ConsoleApp.HttpClientExamples;
+using AMADotNetCore.ConsoleApp.RestClientExamples;
 
 Console.WriteLine("Hello, World!");
 
@@ -65,5 +67,11 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 //DapperExample dapperExample = new DapperExample();
 //dapperExample.Run();
 
-EFCoreExample efcoreExample = new EFCoreExample();
-efcoreExample.Run();
+//EFCoreExample efcoreExample = new EFCoreExample();
+//efcoreExample.Run();
+
+//HttpClientExample httpExample = new HttpClientExample();
+//await httpExample.Run();
+
+RestClientExample restClientExample = new RestClientExample();
+await restClientExample.Run();

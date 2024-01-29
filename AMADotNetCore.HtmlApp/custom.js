@@ -7,16 +7,31 @@ function successMessage(message) {
 }
 
 function confirmMessage(message) {
+  // return new Promise((resolve, reject) => {
+  //   Swal.fire({
+  //     title: "Confirm",
+  //     text: message,
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonText: "Yes",
+  //   }).then((result) => {
+  //      resolve(result.isConfirmed);
+  //   });
+  // });
+
   return new Promise((resolve, reject) => {
-    Swal.fire({
-      title: "Confirm",
-      text: message,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes",
-    }).then((result) => {
-       resolve(result.isConfirmed);
-    });
+    Notiflix.Confirm.show(
+      'Confirm',
+      message,
+      'Yes',
+      'No',
+      () => {
+        resolve(true);
+      },
+      () => {
+        resolve(false);
+      },
+      );
   });
 
     // return new Promise((resolve, reject) => {

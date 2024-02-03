@@ -1,0 +1,19 @@
+﻿@model BlogDataModel;
+<h4>Edit Page</h4>
+<form action="/blog/update/@Model.Blog_Id" method="post">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="Blog_Title" value="@Model.Blog_Title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" name="Blog_Author" value="@Model.Blog_Author">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" name="Blog_Content" value="@Model.Blog_Content">
+    </div>
+    <button type="button" class="btn btn-secondary">Cancel</button>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>

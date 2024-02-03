@@ -1,0 +1,61 @@
+﻿@model BlogListResponseModel;
+@{
+    int rowCount = 0;
+}
+
+@if (TempData["IsSuccess"] != null)
+{
+    bool isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    if (isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+
+}
+
+<p>Page Count - @Model.PageCount</p>
+<p>Page Row Count - @Model.PageRowCount</p>
+
+<div>
+    <h4>Blog List</h4>
+    <a href="/blog/create" class=" btn btn-dark">Create Blog</a>
+
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Action</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BlogDataModel blog in Model.BlogList)
+                {
+                    <tr>
+                        <th>
+                            <a href="/blog/edit/@blog.Blog_Id" class="btn btn-warning">Edit</a>
+                            <button class="btn btn-danger">Delete</button>
+                        </th>
+                        <th>@(++rowCount)</th>
+                        <td>@blog.Blog_Title</td>
+                        <td>@blog.Blog_Author</td>
+                        <td>@blog.Blog_Content</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

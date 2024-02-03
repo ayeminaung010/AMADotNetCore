@@ -1,0 +1,48 @@
+﻿<h4>Blog index </h4>
+
+
+<form  action="/blog/save" method="post">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="Blog_Title" value="">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" name="Blog_Author" value="">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" name="Blog_Content" value="">
+    </div>
+    <button type="button" class="btn btn-secondary">Cancel</button>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+<hr />
+
+
+@if (ViewData["Title1"] != null)
+{
+    <div>
+        <h4>ViewData - typeCast</h4>
+        <p>@ViewData["Title1"]</p>
+        <p>@(Convert.ToInt32(ViewData["Number"]) + 1)</p>
+    </div>
+    <div>
+        <h4>ViewBag - no typeCast</h4>
+        <p>@ViewBag.Number + 1</p>
+    </div>
+    <div>
+        <h4>TempData - typeCast</h4>
+        <p>@(Convert.ToInt32(TempData["Number"])) + 1</p>
+    </div>
+}
+
+
+
+@section scripts{
+    <script>
+        console.log("hello worl");
+    </script>
+}

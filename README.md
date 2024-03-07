@@ -136,7 +136,38 @@ gRPC
 ````
 
 
+> pagination query 
+ `
+select * from Tbl_Blog order by Blog_Id 
+OFFSET 10 ROWS
+FETCH NEXT 10 ROWS ONLY
+ `
+ > stored procedure
+ `
+ create proc Sp_GetBlogs 
+ as begin
+ ____query here ______
+ end 
+ `
+ > run stored procedure 
+`exec Sp_GetBlogs`
 
+>parameter stored procedure - pagination
+
+'alter proc Sp_GetBlogs 
+@pageNo int,
+@pageSize int
+ as begin
+
+ select * from Tbl_Blog order by Blog_Id 
+OFFSET ((@pageNo - 1) * @pageSize) ROWS
+FETCH NEXT @pageSize ROWS ONLY
+
+ end 
+ '
+
+  > run parameter stored procedure 
+`exec Sp_GetBlogs 1,10`
 
 
 

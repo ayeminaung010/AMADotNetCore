@@ -14,6 +14,8 @@ namespace AMADotNetCore.ConsoleApp.AdoDotNetExamples
         public void Run()
         {
             //Read();
+            Read(1,10);
+            Read(2,10);
             //Edit(1);
             //Edit(11);
             //Create("Test Title", "Test Author", "Test Content");
@@ -21,6 +23,44 @@ namespace AMADotNetCore.ConsoleApp.AdoDotNetExamples
             Delete(24);
         }
 
+        #region pagination Read
+        private void Read(int pageNo,int pageSize)
+        {
+            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+            {
+                DataSource = ".",
+                InitialCatalog = "AMADotNetCore",
+                UserID = "sa",
+                Password = "sa@123"
+            };
+            SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string query = "Sp_GetBlogs";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@pageNo", pageNo);
+            command.Parameters.AddWithValue("@pageSize", pageSize);
+
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+
+            DataTable dt = new DataTable();
+            sqlDataAdapter.Fill(dt);
+
+
+            connection.Close();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Console.WriteLine("Id => " + dr["Blog_Id"]);
+                Console.WriteLine($"Title => {dr["Blog_Title"]}");
+                Console.WriteLine("Author => " + dr["Blog_Author"]);
+                Console.WriteLine("Content => " + dr["Blog_Content"]);
+            }
+        }
+        #endregion
+
+        #region normal Read
         private void Read()
         {
             SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
@@ -57,7 +97,7 @@ namespace AMADotNetCore.ConsoleApp.AdoDotNetExamples
                 Console.WriteLine("Content => " + dr["Blog_Content"]);
             }
         }
-
+        #endregion
 
         private void Edit(int id)
         {

@@ -59,8 +59,7 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 //    Console.WriteLine("Content => " + dr["Blog_Content"]);
 //}
 
-//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-//adoDotNetExample.Run();
+
 //Console.ReadKey();
 
 
@@ -78,7 +77,10 @@ sqlConnectionStringBuilder.Password = "sa@123";*/
 Console.WriteLine("Please wait for api...");
 Console.ReadKey();
 
-RefitExample refitExample = new RefitExample();
-await refitExample.Run();
+AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+adoDotNetExample.Run();
+
+//RefitExample refitExample = new RefitExample();
+//await refitExample.Run();
 
 Console.ReadKey();

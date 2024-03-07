@@ -1,0 +1,55 @@
+﻿@model BlogDataModel;
+<h4>Edit Page</h4>
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" id="Blog_Title" value="@Model.Blog_Title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" id="Blog_Author" value="@Model.Blog_Author">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" id="Blog_Content" value="@Model.Blog_Content">
+    <input type="hidden" id="Blog_Id" value="@Model.Blog_Id">
+    </div>
+    <button type="button" class="btn btn-secondary">Cancel</button>
+    <button type="button" id="updateBtn" class="btn btn-success">Update</button>
+
+@section scripts{
+   <script>
+        $("#updateBtn").click(function (e) {
+            let title = $("#Blog_Title").val();
+            let author = $("#Blog_Author").val();
+            let content = $("#Blog_Content").val();
+            let id = $("#Blog_Id").val();
+            let _reqModel = {
+                Blog_Title: title,
+                Blog_Author: author,
+                Blog_Content: content,
+                Blog_Id: id
+            }
+
+            $.ajax({
+                type: 'POST',
+                // url: '@Url.Action("update", "BlogAjax")',
+                url: '/BlogAjax/update',
+                data: { blog: _reqModel },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data.isSuccess)
+                    if (data.isSuccess) {
+                        window.location.href = "/BlogAjax";
+                    }
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(ex.responseText);
+                    console.log("Message : " + r.Message);
+                    console.log("StackTrace : " + r.StackTrace);
+                    console.log("ExceptionType : " + r.ExceptionType);
+                }
+            })
+        })
+   </script>
+}

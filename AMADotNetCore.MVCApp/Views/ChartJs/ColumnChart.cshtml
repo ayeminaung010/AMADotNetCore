@@ -1,0 +1,37 @@
+﻿@model CoulmnChartModel
+@{
+    List<int> data = Model.Data;
+    List<string> labels = Model.Labels;
+
+}
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+@section scripts{
+    <script>
+        let _data = @Html.Raw(JsonConvert.SerializeObject(data));
+        let _labels = @Html.Raw(JsonConvert.SerializeObject(labels));
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: _labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: _data,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}

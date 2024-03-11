@@ -32,4 +32,10 @@ namespace AMADotNetCore.MVCApp.Models
         public List<int> Series { get; set; }
         public List<string> Labels { get; set; }
     }
+
+    public class CoulmnChartModel
+    {
+        public List<int> Data { get; set; }
+        public List<string> Labels { get; set; }
+    }
 }

@@ -31,9 +31,9 @@ builder.Services.AddScoped(n =>
 });
 
 
-builder.Services
-	.AddRefitClient<IBlogApi>()
-	.ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiUrl").Value!));
+//builder.Services
+//	.AddRefitClient<IBlogApi>()
+//	.ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiUrl").Value!));
 
 var app = builder.Build();
 
